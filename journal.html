@@ -99,6 +99,16 @@
   .gets li:last-child { border-bottom: none; }
   .gets b { font-family: var(--display); font-weight: 700; font-size: 1.15rem; }
 
+  /* look inside — real pages from the book */
+  .peek { margin-top: 2rem; }
+  .peek-main { display: block; width: 100%; max-width: 40rem;
+               border: 2px solid var(--ink); }
+  .peek-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+              max-width: 40rem; margin-top: 1rem; }
+  .peek-row img { display: block; width: 100%; border: 2px solid var(--ink); }
+  .peek-cap { font-size: .9rem; color: var(--quiet); margin-top: .75rem;
+              max-width: 34rem; }
+
   /* free sheet band */
   .band { background: var(--pine); color: #F2F4EC; border-top: none;
           padding: 3.25rem 0 3.5rem; }
@@ -163,9 +173,9 @@
     <div class="wrap">
       <span class="label">The whole thing</span>
       <ol class="questions">
-        <li>What am I grateful for today?</li>
-        <li>What must I accomplish today?</li>
-        <li>What quality do I want to show the world today?</li>
+        <li>One thing I&rsquo;m grateful for today</li>
+        <li>One thing I will do today</li>
+        <li>How do I want to show up today</li>
       </ol>
       <p class="q-note">That&rsquo;s it. Three questions and a little space to write.
       <strong>No dates and no day numbers</strong> &mdash; so a missed morning isn&rsquo;t a
@@ -198,6 +208,19 @@
       </ul>
       <p class="q-note">Paperback, 6&times;9, matte black cover.
       Published under Steady Hands Press.</p>
+
+      <div class="peek">
+        <img class="peek-main" src="inside-example.jpg" width="970" height="600" loading="lazy"
+             alt="An example page filled in: grateful for, one thing I&rsquo;ll do, and how I want to show up today.">
+        <div class="peek-row">
+          <img src="inside-how.jpg" width="600" height="900" loading="lazy"
+               alt="The How This Works page, explaining what each of the three questions is for.">
+          <img src="inside-daily.jpg" width="600" height="900" loading="lazy"
+               alt="A blank daily page: the three questions, ruled lines, and a check box.">
+        </div>
+        <p class="peek-cap">Actual pages. An example entry, the two-page explainer up front,
+        and one of the 91 daily pages.</p>
+      </div>
     </div>
   </section>
 
