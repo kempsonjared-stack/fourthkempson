@@ -99,15 +99,27 @@
   .gets li:last-child { border-bottom: none; }
   .gets b { font-family: var(--display); font-weight: 700; font-size: 1.15rem; }
 
-  /* look inside — real pages from the book */
+  /* look inside — every kind of page in the book */
+  /* height:auto is load-bearing: the <img> carries width/height attributes for
+     layout stability, and without it the 600px height attribute wins over the
+     percentage width and every tile renders stretched. */
   .peek { margin-top: 2rem; }
-  .peek-main { display: block; width: 100%; max-width: 40rem;
+  .peek-main { display: block; width: 100%; height: auto; max-width: 40rem;
                border: 2px solid var(--ink); }
-  .peek-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
-              max-width: 40rem; margin-top: 1rem; }
-  .peek-row img { display: block; width: 100%; border: 2px solid var(--ink); }
-  .peek-cap { font-size: .9rem; color: var(--quiet); margin-top: .75rem;
+  .peek-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+               gap: 1.1rem; margin-top: 1.35rem; }
+  .peek-grid figure { margin: 0; }
+  .peek-grid a { display: block; border: 2px solid var(--ink); }
+  .peek-grid img { display: block; width: 100%; height: auto; }
+  .peek-grid figcaption { font-family: var(--display); font-weight: 500;
+                          font-size: .8rem; letter-spacing: .05em;
+                          text-transform: uppercase; color: var(--quiet);
+                          margin-top: .45rem; }
+  .peek-cap { font-size: .9rem; color: var(--quiet); margin-top: 1.25rem;
               max-width: 34rem; }
+  /* the gallery earns more width than the reading column */
+  #inside .peek { max-width: 58rem; margin-left: calc((44rem - 58rem) / 2); }
+  @media (max-width: 60rem) { #inside .peek { max-width: 100%; margin-left: 0; } }
 
   /* free sheet band */
   .band { background: var(--pine); color: #F2F4EC; border-top: none;
@@ -210,16 +222,112 @@
       Published under Steady Hands Press.</p>
 
       <div class="peek">
-        <img class="peek-main" src="inside-example.jpg" width="970" height="600" loading="lazy"
+        <img class="peek-main" src="inside-hero.jpg" width="970" height="600" loading="lazy"
              alt="An example page filled in: grateful for, one thing I&rsquo;ll do, and how I want to show up today.">
-        <div class="peek-row">
-          <img src="inside-how.jpg" width="600" height="900" loading="lazy"
-               alt="The How This Works page, explaining what each of the three questions is for.">
-          <img src="inside-daily.jpg" width="600" height="900" loading="lazy"
-               alt="A blank daily page: the three questions, ruled lines, and a check box.">
+        <div class="peek-grid">
+          <figure>
+            <a href="inside-title.jpg" target="_blank" rel="noopener">
+
+              <img src="inside-title.jpg" width="600" height="600" loading="lazy"
+                    alt="Title page: The 3-Question Morning Journal.">
+
+            </a>
+            <figcaption>Title page</figcaption>
+          </figure>
+          <figure>
+            <a href="inside-belongs.jpg" target="_blank" rel="noopener">
+
+              <img src="inside-belongs.jpg" width="600" height="600" loading="lazy"
+                    alt="A page reading THIS JOURNAL BELONGS TO with a line to sign and a start date.">
+
+            </a>
+            <figcaption>Belongs to</figcaption>
+          </figure>
+          <figure>
+            <a href="inside-how.jpg" target="_blank" rel="noopener">
+
+              <img src="inside-how.jpg" width="600" height="600" loading="lazy"
+                    alt="How This Works: what each of the three questions is for.">
+
+            </a>
+            <figcaption>How this works</figcaption>
+          </figure>
+          <figure>
+            <a href="inside-rules.jpg" target="_blank" rel="noopener">
+
+              <img src="inside-rules.jpg" width="600" height="600" loading="lazy"
+                    alt="How This Works, page two: the rules, including that a missed day is undated on purpose.">
+
+            </a>
+            <figcaption>The rules</figcaption>
+          </figure>
+          <figure>
+            <a href="inside-example.jpg" target="_blank" rel="noopener">
+
+              <img src="inside-example.jpg" width="600" height="600" loading="lazy"
+                    alt="An example entry with all three questions answered in handwriting.">
+
+            </a>
+            <figcaption>Example entry</figcaption>
+          </figure>
+          <figure>
+            <a href="inside-start.jpg" target="_blank" rel="noopener">
+
+              <img src="inside-start.jpg" width="600" height="600" loading="lazy"
+                    alt="A divider page reading START HERE.">
+
+            </a>
+            <figcaption>Start here</figcaption>
+          </figure>
+          <figure>
+            <a href="inside-daily.jpg" target="_blank" rel="noopener">
+
+              <img src="inside-daily.jpg" width="600" height="600" loading="lazy"
+                    alt="A blank daily page: the three questions, ruled lines, and a check box.">
+
+            </a>
+            <figcaption>A daily page</figcaption>
+          </figure>
+          <figure>
+            <a href="inside-lookback.jpg" target="_blank" rel="noopener">
+
+              <img src="inside-lookback.jpg" width="600" height="600" loading="lazy"
+                    alt="A Look Back page: best moment, how you kept wanting to show up, one thing to change.">
+
+            </a>
+            <figcaption>A look back</figcaption>
+          </figure>
+          <figure>
+            <a href="inside-lookingback.jpg" target="_blank" rel="noopener">
+
+              <img src="inside-lookingback.jpg" width="600" height="600" loading="lazy"
+                    alt="Looking Back: a closing page telling you to flip to the early pages and keep going.">
+
+            </a>
+            <figcaption>Looking back</figcaption>
+          </figure>
+          <figure>
+            <a href="inside-takestock.jpg" target="_blank" rel="noopener">
+
+              <img src="inside-takestock.jpg" width="600" height="600" loading="lazy"
+                    alt="Take Stock: three write-in prompts near the end of the book.">
+
+            </a>
+            <figcaption>Take stock</figcaption>
+          </figure>
+          <figure>
+            <a href="inside-notes.jpg" target="_blank" rel="noopener">
+
+              <img src="inside-notes.jpg" width="600" height="600" loading="lazy"
+                    alt="A lined NOTES page from the back of the book.">
+
+            </a>
+            <figcaption>Notes at the back</figcaption>
+          </figure>
         </div>
-        <p class="peek-cap">Actual pages. An example entry, the two-page explainer up front,
-        and one of the 91 daily pages.</p>
+        <p class="peek-cap">Tap any page to see it full size. Every kind of page in the book, straight out of the print file &mdash;
+        front matter, the explainer, a filled-in example, a blank daily page, the look-back
+        pages, and the notes at the back. 120 pages, 91 of them daily.</p>
       </div>
     </div>
   </section>
