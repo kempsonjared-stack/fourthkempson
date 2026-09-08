@@ -100,9 +100,9 @@
   .gets b { font-family: var(--display); font-weight: 700; font-size: 1.15rem; }
 
   /* look inside — every kind of page in the book */
-  /* height:auto is load-bearing: the <img> carries width/height attributes for
-     layout stability, and without it the 600px height attribute wins over the
-     percentage width and every tile renders stretched. */
+  /* height:auto is load-bearing: each image tag carries width/height attributes
+     for layout stability, and without it the 600px height attribute wins over
+     the percentage width and every tile renders stretched. */
   .peek { margin-top: 2rem; }
   .peek-main { display: block; width: 100%; height: auto; max-width: 40rem;
                border: 2px solid var(--ink); }
