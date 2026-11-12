@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Shop — Fourth Kempson</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23212821'/%3E%3Ctext x='32' y='46' font-family='Arial Narrow,Arial,sans-serif' font-size='40' font-weight='700' fill='%23F2B90D' text-anchor='middle'%3E4K%3C/text%3E%3C/svg%3E">
-<meta name="description" content="Things Jared Kempson makes for the morning: the 3-Question Morning Journal, and mugs for the coffee next to it.">
+<meta name="description" content="Journals, shirts, mugs and downloads from Jared Kempson. Search the shop or browse by category.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="The Shop — Fourth Kempson">
-<meta property="og:description" content="Made for the morning. A journal, and mugs for the coffee next to it.">
+<meta property="og:description" content="Journals, shirts, mugs and downloads from Jared Kempson.">
 <meta property="og:url" content="https://fourthkempson.com/shop.html">
 <meta name="twitter:card" content="summary_large_image">
 <style>
@@ -16,6 +16,7 @@
 
   :root {
     --paper: #FAFAF7;
+    --tile: #F2F2EC;
     --ink: #212821;
     --pine: #2E4A3A;
     --yellow: #F2B90D;
@@ -28,93 +29,125 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: var(--paper); color: var(--ink); font-family: var(--body);
          font-size: 1.0625rem; line-height: 1.65; }
-  .wrap { max-width: 64rem; margin: 0 auto; padding: 0 1.25rem; }
+  .wrap { max-width: 76rem; margin: 0 auto; padding: 0 1.25rem; }
   a { color: var(--pine); }
-  a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--pine);
-    outline-offset: 2px; }
+  a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--pine); outline-offset: 2px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden;
+             clip: rect(0 0 0 0); white-space: nowrap; }
 
+  /* header: wordmark + site links, then the shop's category tabs */
   header.top { border-bottom: 2px solid var(--ink); }
-  header.top .wrap { display: flex; justify-content: space-between; align-items: baseline;
-                     gap: 1rem; padding-top: .8rem; padding-bottom: .8rem; }
+  header.top .bar { display: flex; flex-wrap: wrap; justify-content: space-between;
+                    align-items: baseline; gap: .4rem 1rem; padding-top: .8rem; padding-bottom: .8rem; }
   .wordmark { font-family: var(--display); font-weight: 700; font-size: 1.1rem;
               letter-spacing: .04em; text-transform: uppercase; color: var(--ink);
               text-decoration: none; }
-  nav.links { display: flex; gap: 1.25rem; }
+  nav.links { display: flex; flex-wrap: wrap; gap: .3rem 1.25rem; }
   nav.links a { font-family: var(--display); font-weight: 500; font-size: 1rem;
                 color: var(--quiet); text-decoration: none; white-space: nowrap; }
-  nav.links a:hover { color: var(--ink); }
+  nav.links a:hover, nav.links a[aria-current] { color: var(--ink); }
 
-  .label { font-family: var(--display); font-weight: 700; font-size: .95rem;
-           letter-spacing: .18em; text-transform: uppercase; color: var(--quiet);
-           display: block; margin-bottom: 1.1rem; }
+  nav.tabs { border-top: 1px solid var(--rule); }
+  nav.tabs .wrap { display: flex; gap: .4rem 1.6rem; overflow-x: auto; scrollbar-width: none;
+                   padding-top: .55rem; padding-bottom: .55rem; }
+  nav.tabs a { font-family: var(--display); font-weight: 700; font-size: 1.1rem;
+               letter-spacing: .03em; color: var(--ink); text-decoration: none;
+               white-space: nowrap; padding: .05rem .45rem; }
+  nav.tabs a:hover { text-decoration: underline; text-underline-offset: .2em; }
+  nav.tabs a.on { background: var(--yellow); }
 
-  /* hero */
-  .hero { padding: 3.5rem 0 2.75rem; }
-  .hero h1 { font-family: var(--display); font-weight: 700;
-             font-size: clamp(3rem, 9vw, 5.4rem); line-height: .96;
-             letter-spacing: -.01em; text-wrap: balance; margin-bottom: 1.1rem; }
-  /* Same highlighter as journal.html: a background on the span, so there is no
-     stacking context to fight and the wipe animates as background-size. */
-  .mark { white-space: nowrap; background-image: linear-gradient(var(--yellow), var(--yellow));
-          background-repeat: no-repeat; background-position: 0 84%;
-          background-size: 100% .40em; }
-  @media (prefers-reduced-motion: no-preference) {
-    .mark { animation: swipe .55s cubic-bezier(.16,1,.3,1) .25s backwards; }
-    @keyframes swipe { from { background-size: 0 .40em; } to { background-size: 100% .40em; } }
-  }
-  .hero .intro { font-size: 1.2rem; max-width: 34rem; }
+  /* search band */
+  .search { background: var(--ink); padding: 1.6rem 0; }
+  .search .field { max-width: 36rem; margin: 0 auto; position: relative; }
+  .search input { width: 100%; font-family: var(--body); font-size: 1.05rem; color: #F2F4EC;
+                  background: #2E362E; border: 1px solid #8B9384; border-radius: 0;
+                  padding: .7rem 2.75rem .7rem 2.6rem; }
+  .search input::placeholder { color: #A9B1A1; }
+  .search svg { position: absolute; left: .85rem; top: 50%; transform: translateY(-50%);
+                width: 1.1rem; height: 1.1rem; stroke: #C9CFC2; fill: none; stroke-width: 2; }
+  .search .clear { position: absolute; right: .35rem; top: 50%; transform: translateY(-50%);
+                   background: none; border: 0; color: #C9CFC2; font-size: 1.5rem; line-height: 1;
+                   width: 2.2rem; height: 2.2rem; cursor: pointer; }
+  .search .clear[hidden] { display: none; }
 
-  /* products: editorial rows separated by rules, never cards */
-  .item { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-          gap: 2.5rem 3.25rem; align-items: center;
-          border-top: 2px solid var(--ink); padding: 3rem 0 3.25rem; }
-  .item.flip .photo { order: 2; }
-  .photo { display: block; }
-  .photo img { display: block; width: 100%; height: auto; border: 2px solid var(--ink);
-               background: #fff; }
-  .item.tall .photo { max-width: 22rem; justify-self: center; }
-  .num { font-family: var(--display); font-weight: 700; font-size: 1rem;
-         letter-spacing: .18em; color: var(--quiet); }
-  .item h2 { font-family: var(--display); font-weight: 700;
-             font-size: clamp(2.1rem, 5vw, 3.1rem); line-height: 1; margin: .35rem 0 .5rem;
-             text-wrap: balance; }
-  .kind { font-family: var(--display); font-weight: 500; font-size: 1.05rem;
-          letter-spacing: .04em; color: var(--quiet); }
-  .line { font-size: 1.15rem; max-width: 30rem; margin: 1rem 0 1.4rem; }
-  .status { display: flex; align-items: baseline; gap: .8rem; margin-top: .9rem; }
-  .chip { font-family: var(--display); font-weight: 700; font-size: .85rem;
-          letter-spacing: .16em; text-transform: uppercase; padding: .15rem .55rem;
-          color: var(--paper); background: var(--pine); }
+  /* results heading + count */
+  .results-head { padding: 2.4rem 0 0; }
+  .results-head h1 { font-family: var(--display); font-weight: 700;
+                     font-size: clamp(2.2rem, 5.5vw, 3.4rem); line-height: 1; text-wrap: balance; }
+  .mark { background-image: linear-gradient(var(--yellow), var(--yellow));
+          background-repeat: no-repeat; background-position: 0 84%; background-size: 100% .40em; }
+  .count { font-family: var(--display); font-weight: 700; font-size: 1.05rem;
+           letter-spacing: .04em; border-bottom: 2px solid var(--ink); display: inline-block;
+           margin-top: 1.3rem; padding-bottom: .35rem; }
+  .head-rule { border: 0; border-top: 1px solid var(--rule); margin-top: -1px; }
+
+  /* body: filters left, grid right */
+  .layout { display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 2.5rem;
+            padding: 2rem 0 3.5rem; align-items: start; }
+  .filters-title { font-family: var(--body); font-size: 1.2rem; margin-bottom: .4rem; }
+  .filters fieldset { border: 0; border-top: 1px solid var(--rule); padding: .9rem 0 1rem; }
+  .filters legend { font-family: var(--display); font-weight: 700; font-size: 1.1rem;
+                    letter-spacing: .03em; float: left; width: 100%; margin-bottom: .5rem; }
+  .filters label { display: flex; align-items: center; gap: .55rem; clear: left;
+                   font-size: .98rem; padding: .22rem 0; cursor: pointer; }
+  .filters input[type=checkbox] { width: 1.05rem; height: 1.05rem; accent-color: var(--pine); }
+  .filters .n { color: var(--quiet); font-size: .9rem; margin-left: auto; }
+  .filters .reset { font-family: var(--display); font-weight: 700; letter-spacing: .04em;
+                    text-transform: uppercase; font-size: .95rem; background: none;
+                    border: 2px solid var(--ink); padding: .4rem .9rem; cursor: pointer; }
+  .filters .reset:hover { background: #F0F0EA; }
+  details.filters-mobile > summary { display: none; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.25rem 1.5rem; }
+  .card { display: flex; flex-direction: column; }
+  .card[hidden] { display: none; }
+  .tile { display: block; aspect-ratio: 4 / 3; background: var(--tile); overflow: hidden; }
+  .tile img { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .tile img.on-white { mix-blend-mode: multiply; }
+  a.tile:hover img { transform: scale(1.03); }
+  @media (prefers-reduced-motion: no-preference) { .tile img { transition: transform .35s ease; } }
+  .card h2 { font-family: var(--display); font-weight: 700; font-size: 1.45rem; line-height: 1.1;
+             margin-top: .85rem; text-wrap: balance; }
+  .card h2 a { color: inherit; text-decoration: none; }
+  .card h2 a:hover { text-decoration: underline; text-underline-offset: .15em; }
+  .kind { font-family: var(--display); font-weight: 500; font-size: 1rem; letter-spacing: .03em;
+          color: var(--quiet); margin-top: .2rem; }
+  .line { font-size: .98rem; margin-top: .45rem; color: #353D35; }
+  .price-row { display: flex; align-items: baseline; gap: .7rem; margin-top: .6rem; }
+  .price { font-family: var(--display); font-weight: 700; font-size: 1.35rem; line-height: 1; }
+  .chip { font-family: var(--display); font-weight: 700; font-size: .78rem; letter-spacing: .14em;
+          text-transform: uppercase; padding: .1rem .5rem; color: var(--paper); background: var(--pine); }
   .chip.soon { background: var(--quiet); }
-  .price { font-family: var(--display); font-weight: 700; font-size: 1.7rem; line-height: 1; }
-
-  .cta-row { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
-  .btn { font-family: var(--display); font-weight: 700; font-size: 1.15rem;
-         letter-spacing: .05em; text-transform: uppercase; text-decoration: none;
-         padding: .75rem 1.4rem .85rem; border: 2px solid var(--ink); color: var(--ink);
-         background: transparent; cursor: pointer; display: inline-block; }
+  .chip.free { background: var(--yellow); color: var(--ink); }
+  .actions { margin-top: .85rem; display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+  .btn { font-family: var(--display); font-weight: 700; font-size: 1rem; letter-spacing: .05em;
+         text-transform: uppercase; text-decoration: none; padding: .5rem 1rem .55rem;
+         border: 2px solid var(--ink); color: var(--ink); background: transparent; cursor: pointer;
+         display: inline-block; }
   .btn.primary { background: var(--yellow); }
   .btn:hover { background: #F0F0EA; }
   .btn.primary:hover { background: #E5AC05; }
 
-  /* get-on-the-list form for items that are not for sale yet */
-  .list { max-width: 30rem; }
-  .list label { font-family: var(--display); font-weight: 700; font-size: .95rem;
-                letter-spacing: .12em; text-transform: uppercase; display: block;
-                margin-bottom: .5rem; }
-  .list .row { display: flex; flex-wrap: wrap; gap: .6rem; }
-  .list input[type=email] { flex: 1 1 14rem; min-width: 0; border: 2px solid var(--ink);
-                            background: #fff; font-family: var(--body); font-size: 1rem;
-                            padding: .65rem .75rem; border-radius: 0; color: var(--ink); }
-  .list button { font-family: var(--display); font-weight: 700; font-size: 1.05rem;
-                 letter-spacing: .05em; text-transform: uppercase; border: 2px solid var(--ink);
-                 background: var(--yellow); color: var(--ink); padding: .65rem 1.2rem;
-                 cursor: pointer; }
-  .list button:hover { background: #E5AC05; }
-  .list .fine { font-size: .9rem; color: var(--quiet); margin-top: .6rem; }
+  /* get-on-the-list for items not for sale yet */
+  details.list > summary { list-style: none; }
+  details.list > summary::-webkit-details-marker { display: none; }
+  details.list[open] > summary { margin-bottom: .6rem; }
+  details.list form { max-width: 24rem; }
+  details.list .row { display: flex; flex-wrap: wrap; gap: .5rem; }
+  details.list input[type=email] { flex: 1 1 11rem; min-width: 0; border: 2px solid var(--ink);
+                                   background: #fff; font-family: var(--body); font-size: 1rem;
+                                   padding: .5rem .65rem; border-radius: 0; color: var(--ink); }
+  details.list button { font-family: var(--display); font-weight: 700; font-size: 1rem;
+                        letter-spacing: .05em; text-transform: uppercase; border: 2px solid var(--ink);
+                        background: var(--yellow); color: var(--ink); padding: .45rem 1rem; cursor: pointer; }
+  details.list .fine { font-size: .85rem; color: var(--quiet); margin-top: .45rem; }
 
-  .thanks { display: none; border-top: 2px solid var(--ink); padding: 1.25rem 0;
-            font-family: var(--display); font-weight: 700; font-size: 1.35rem; }
+  .empty { grid-column: 1 / -1; font-size: 1.15rem; padding: 2rem 0; }
+  .empty[hidden] { display: none; }
+
+  .thanks { display: none; background: var(--pine); color: var(--paper); padding: .9rem 0;
+            font-family: var(--display); font-weight: 700; font-size: 1.2rem; }
   .thanks:target { display: block; }
 
   footer { background: var(--ink); color: #C9CFC2; padding: 2.25rem 0; margin-top: 1rem;
@@ -124,37 +157,89 @@
   footer a:hover { text-decoration: underline; }
   footer .legal { color: #8B9384; margin-top: .6rem; }
 
+  @media (max-width: 1020px) {
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
   @media (max-width: 760px) {
-    .item { grid-template-columns: 1fr; gap: 1.6rem; padding: 2.25rem 0 2.5rem; }
-    .item.flip .photo { order: 0; }
-    .item.tall .photo { max-width: 16rem; justify-self: start; }
-    nav.links { gap: .9rem; }
+    .layout { grid-template-columns: 1fr; gap: 1.25rem; padding-top: 1.25rem; }
+    details.filters-mobile > summary { display: inline-block; font-family: var(--display);
+      font-weight: 700; font-size: 1rem; letter-spacing: .05em; text-transform: uppercase;
+      border: 2px solid var(--ink); padding: .45rem 1rem; cursor: pointer; list-style: none; }
+    details.filters-mobile > summary::-webkit-details-marker { display: none; }
+    details.filters-mobile[open] > summary { margin-bottom: 1rem; }
+    .filters-title { display: none; }
+    nav.tabs .wrap { gap: .3rem .55rem; padding-left: .9rem; padding-right: .9rem; }
+    nav.tabs a { font-size: 1rem; padding: .05rem .3rem; }
+    .grid { gap: 1.75rem 1rem; }
+    .card h2 { font-size: 1.25rem; }
+    .line { display: none; }
   }
 </style>
 </head>
 <body>
 
 <header class="top">
-  <div class="wrap">
+  <div class="wrap bar">
     <a class="wordmark" href="index.html">Fourth Kempson</a>
-    <nav class="links"><a href="index.html">The videos</a><a href="journal.html">The journal</a></nav>
+    <nav class="links" aria-label="Site"><a href="index.html">The videos</a><a href="journal.html">The journal</a><a href="shop.html" aria-current="page">The shop</a></nav>
   </div>
+  <nav class="tabs" aria-label="Shop categories">
+    <div class="wrap">
+      <a href="shop.html" data-cat="">Shop all</a>
+      <a href="#journals" data-cat="journals">Journals</a>
+      <a href="#apparel" data-cat="apparel">Apparel</a>
+      <a href="#mugs" data-cat="mugs">Mugs</a>
+      <a href="#downloads" data-cat="downloads">Downloads</a>
+    </div>
+  </nav>
 </header>
+
+<p class="thanks" id="thanks"><span class="wrap" style="display:block">You&rsquo;re on the list. One email when it&rsquo;s ready, nothing else.</span></p>
+
+<section class="search" role="search">
+  <form class="wrap" onsubmit="return false">
+    <div class="field">
+      <label class="sr-only" for="q">Search the shop</label>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
+      <input id="q" type="search" placeholder="Search the shop" autocomplete="off">
+      <button class="clear" type="button" aria-label="Clear search" hidden>&times;</button>
+    </div>
+  </form>
+</section>
 
 <main id="top">
   <div class="wrap">
-    <section class="hero">
-      <span class="label">The shop</span>
-      <h1>Made for <span class="mark">the morning.</span></h1>
-      <p class="intro">A journal you fill in before the phone, and a mug for the coffee next to it.</p>
-    </section>
+    <div class="results-head">
+      <h1 id="heading">Everything in <span class="mark">the shop</span></h1>
+      <div class="count" id="count" aria-live="polite">7 products</div>
+    </div>
+    <hr class="head-rule">
 
-    <p class="thanks" id="thanks">You&rsquo;re on the list. One email when it&rsquo;s ready, nothing else.</p>
+    <div class="layout">
+      <aside>
+        <details class="filters-mobile" id="filters-box" open>
+          <summary>Filters</summary>
+          <div class="filters">
+            <p class="filters-title">Filters</p>
+            <fieldset><legend>Category</legend><label><input type="checkbox" name="cat" value="journals"> Journals<span class="n">1</span></label><label><input type="checkbox" name="cat" value="apparel"> Apparel<span class="n">2</span></label><label><input type="checkbox" name="cat" value="mugs"> Mugs<span class="n">1</span></label><label><input type="checkbox" name="cat" value="downloads"> Downloads<span class="n">3</span></label></fieldset>
+            <fieldset><legend>Type</legend><label><input type="checkbox" name="type" value="physical"> Shipped to you<span class="n">4</span></label><label><input type="checkbox" name="type" value="digital"> Instant download<span class="n">3</span></label></fieldset>
+            <fieldset><legend>Price</legend><label><input type="checkbox" name="price" value="free"> Free<span class="n">1</span></label><label><input type="checkbox" name="price" value="under10"> Under $10<span class="n">2</span></label><label><input type="checkbox" name="price" value="10to25"> $10 to $25<span class="n">2</span></label></fieldset>
+            <button class="reset" type="button" id="reset">Clear filters</button>
+          </div>
+        </details>
+      </aside>
 
-    <article class="item" id="journal"><div class="photo"><img src="shop-journal.jpg" width="1200" height="900" loading="lazy" alt="The journal’s black cover beside a filled-in example page: grateful for, one thing I’ll do, how I want to show up."></div><div class="text"><span class="num">01</span><h2>The 3-Question Morning Journal</h2><div class="kind">Paperback · 6×9 · 120 pages</div><div class="status"><span class="chip">Available</span><span class="price">$9.99</span></div><p class="line">Three questions. Five minutes. No dates and no day numbers, so a missed morning isn’t a failure.</p><div class="cta-row"><a class="btn primary" href="https://www.amazon.com/dp/B0HH9QJGMK">Get it on Amazon</a><a class="btn" href="journal.html">Look inside</a></div></div></article>
-    <article class="item flip" id="mug-helldiver"><div class="photo"><img src="shop-mug-helldiver-lykos.jpg" width="900" height="900" loading="lazy" alt="Product photo of a white 11 oz mug printed with a 1950s-style postcard: Helldiver of in script, LYKOS in big block letters filled with Mars scenes, tagline Mine the red planet."></div><div class="text"><span class="num">02</span><h2>Helldiver of Lykos Mug</h2><div class="kind">Ceramic · 11 oz · white · printed both sides</div><div class="status"><span class="chip soon">Coming soon</span></div><p class="line">For the ones who go down first.</p><form class="list" action="https://formsubmit.co/6b1855c751632b4d9182af3a363c2755" method="POST"><input type="hidden" name="_subject" value="Shop list: Helldiver of Lykos mug"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="https://fourthkempson.com/shop.html#thanks"><input type="hidden" name="product" value="Helldiver of Lykos Mug"><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true"><label for="em-mug-helldiver">Want one when it&rsquo;s ready?</label><div class="row"><input id="em-mug-helldiver" type="email" name="email" placeholder="you@example.com" required><button type="submit">Tell me</button></div><p class="fine">One email when it&rsquo;s ready. Nothing else.</p></form></div></article>
-    <article class="item" id="tee-hi-neighbor"><div class="photo"><img src="shop-tee-hi-neighbor.jpg" width="1200" height="700" loading="lazy" alt="Front and back of a white tee: a small Hi, neighbor. on the left chest, and HANDYMAN SERVICES with a phone number on the back."></div><div class="text"><span class="num">03</span><h2>Hi, Neighbor. Handyman Tee</h2><div class="kind">Tee · soft cotton · white, natural, cream, ash, heather · S to 2XL</div><div class="status"><span class="chip soon">Coming soon</span></div><p class="line">Hi, neighbor. on the chest. Handyman Services and the number on the back.</p><form class="list" action="https://formsubmit.co/6b1855c751632b4d9182af3a363c2755" method="POST"><input type="hidden" name="_subject" value="Shop list: Hi, Neighbor. handyman tee"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="https://fourthkempson.com/shop.html#thanks"><input type="hidden" name="product" value="Hi, Neighbor. Handyman Tee"><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true"><label for="em-tee-hi-neighbor">Want one when it&rsquo;s ready?</label><div class="row"><input id="em-tee-hi-neighbor" type="email" name="email" placeholder="you@example.com" required><button type="submit">Tell me</button></div><p class="fine">One email when it&rsquo;s ready. Nothing else.</p></form></div></article>
-    <article class="item flip" id="tee-spoderman"><div class="photo"><img src="shop-tee-spoderman.jpg" width="900" height="900" loading="lazy" alt="A black tee printed with a hand-drawn Spoderman and the words with great power comes great responsitrillitrance."></div><div class="text"><span class="num">04</span><h2>Spoderman Responsitrillitrance Tee</h2><div class="kind">Tee · heavyweight cotton · black · S to 2XL</div><div class="status"><span class="chip">Available</span><span class="price">$24.99</span></div><p class="line">With great power comes great responsitrillitrance.</p><div class="cta-row"><a class="btn primary" href="https://3f45b0-2.myshopify.com/products/spoderman-responsitrillitrance">Buy the tee</a></div></div></article>
+      <div class="grid" id="grid">
+        <article class="card" id="journal" data-cat="journals" data-type="physical" data-price="9.99" data-text="the 3-question morning journal paperback · 6×9 · 120 pages three questions. five minutes. no dates and no day numbers, so a missed morning isn’t a failure. journals shipped to you "><a class="tile" href="journal.html" tabindex="-1" aria-hidden="true"><img src="shop-journal.jpg" width="1200" height="900" loading="lazy" alt="The journal’s black cover beside a filled-in example page: grateful for, one thing I’ll do, how I want to show up."></a><h2><a href="journal.html">The 3-Question Morning Journal</a></h2><div class="kind">Paperback · 6×9 · 120 pages</div><div class="price-row"><span class="price">$9.99</span><span class="chip">Available</span></div><p class="line">Three questions. Five minutes. No dates and no day numbers, so a missed morning isn’t a failure.</p><div class="actions"><a class="btn primary" href="https://www.amazon.com/dp/B0HH9QJGMK">Get it on Amazon</a><a class="btn" href="journal.html">Look inside</a></div></article>
+        <article class="card" id="claude-code-guide" data-cat="downloads" data-type="digital" data-price="12" data-text="claude code from scratch illustrated guide · pdf · windows or mac set up an ai assistant that reads your email, uses your browser and tidies your files. about thirty minutes, no coding. downloads instant download "><div class="tile"><img src="dl-claude-code-guide.jpg" width="1200" height="900" loading="lazy" alt="The first page of the guide: Set up an assistant that actually does things, with a sample conversation where Claude sorts unread email."></div><h2>Claude Code From Scratch</h2><div class="kind">Illustrated guide · PDF · Windows or Mac</div><div class="price-row"><span class="price">$12</span><span class="chip soon">Coming soon</span></div><p class="line">Set up an AI assistant that reads your email, uses your browser and tidies your files. About thirty minutes, no coding.</p><div class="actions"><details class="list"><summary class="btn">Tell me when it&rsquo;s ready</summary><form action="https://formsubmit.co/6b1855c751632b4d9182af3a363c2755" method="POST"><input type="hidden" name="_subject" value="Shop list: Claude Code From Scratch guide"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="https://fourthkempson.com/shop.html#thanks"><input type="hidden" name="product" value="Claude Code From Scratch"><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true"><label class="sr-only" for="em-claude-code-guide">Your email</label><div class="row"><input id="em-claude-code-guide" type="email" name="email" placeholder="you@example.com" required><button type="submit">Tell me</button></div><p class="fine">One email when it&rsquo;s ready. Nothing else.</p></form></details></div></article>
+        <article class="card" id="tee-spoderman" data-cat="apparel" data-type="physical" data-price="24.99" data-text="spoderman responsitrillitrance tee tee · heavyweight cotton · white, black, sport grey · s to 3xl with great power comes great responsitrillitrance. apparel shipped to you "><a class="tile" href="https://3f45b0-2.myshopify.com/products/spoderman-responsitrillitrance-2" tabindex="-1" aria-hidden="true"><img class="on-white" src="shop-tee-spoderman-white.jpg" width="900" height="900" loading="lazy" alt="A white tee printed with a hand-drawn Spoderman and the words with great power comes great responsitrillitrance."></a><h2><a href="https://3f45b0-2.myshopify.com/products/spoderman-responsitrillitrance-2">Spoderman Responsitrillitrance Tee</a></h2><div class="kind">Tee · heavyweight cotton · white, black, sport grey · S to 3XL</div><div class="price-row"><span class="price">$24.99</span><span class="chip">Available</span></div><p class="line">With great power comes great responsitrillitrance.</p><div class="actions"><a class="btn primary" href="https://3f45b0-2.myshopify.com/products/spoderman-responsitrillitrance-2">Buy the tee</a></div></article>
+        <article class="card" id="journal-printable" data-cat="downloads" data-type="digital" data-price="4.99" data-text="the 3-question morning journal, printable pdf · us letter and a4 · print at home the same three questions as the paperback. print a fresh page whenever you need one. downloads instant download "><div class="tile"><img src="dl-journal-printable.jpg" width="1200" height="900" loading="lazy" alt="Two pages of the printable journal: the title page and the how-this-works page with the three questions."></div><h2>The 3-Question Morning Journal, Printable</h2><div class="kind">PDF · US Letter and A4 · print at home</div><div class="price-row"><span class="price">$4.99</span><span class="chip soon">Coming soon</span></div><p class="line">The same three questions as the paperback. Print a fresh page whenever you need one.</p><div class="actions"><details class="list"><summary class="btn">Tell me when it&rsquo;s ready</summary><form action="https://formsubmit.co/6b1855c751632b4d9182af3a363c2755" method="POST"><input type="hidden" name="_subject" value="Shop list: Morning Journal printable"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="https://fourthkempson.com/shop.html#thanks"><input type="hidden" name="product" value="The 3-Question Morning Journal, Printable"><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true"><label class="sr-only" for="em-journal-printable">Your email</label><div class="row"><input id="em-journal-printable" type="email" name="email" placeholder="you@example.com" required><button type="submit">Tell me</button></div><p class="fine">One email when it&rsquo;s ready. Nothing else.</p></form></details></div></article>
+        <article class="card" id="free-3-questions" data-cat="downloads" data-type="digital" data-price="0" data-text="the 3 questions, one free page free pdf · one page one page with the three questions. print it as often as you like. downloads instant download "><a class="tile" href="free-3-questions.pdf" tabindex="-1" aria-hidden="true"><img src="dl-free-3-questions.jpg" width="1200" height="900" loading="lazy" alt="A single printable page titled The 3 Questions, with lines under each question."></a><h2><a href="free-3-questions.pdf">The 3 Questions, One Free Page</a></h2><div class="kind">Free PDF · one page</div><div class="price-row"><span class="chip free">Free</span></div><p class="line">One page with the three questions. Print it as often as you like.</p><div class="actions"><a class="btn primary" href="free-3-questions.pdf">Download free</a></div></article>
+        <article class="card" id="mug-helldiver" data-cat="mugs" data-type="physical" data-price="" data-text="helldiver of lykos mug ceramic · 11 oz · white · printed both sides for the ones who go down first. mugs shipped to you "><div class="tile"><img class="on-white" src="shop-mug-helldiver-lykos.jpg" width="900" height="900" loading="lazy" alt="Product photo of a white 11 oz mug printed with a 1950s-style postcard: Helldiver of in script, LYKOS in big block letters filled with Mars scenes, tagline Mine the red planet."></div><h2>Helldiver of Lykos Mug</h2><div class="kind">Ceramic · 11 oz · white · printed both sides</div><div class="price-row"><span class="chip soon">Coming soon</span></div><p class="line">For the ones who go down first.</p><div class="actions"><details class="list"><summary class="btn">Tell me when it&rsquo;s ready</summary><form action="https://formsubmit.co/6b1855c751632b4d9182af3a363c2755" method="POST"><input type="hidden" name="_subject" value="Shop list: Helldiver of Lykos mug"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="https://fourthkempson.com/shop.html#thanks"><input type="hidden" name="product" value="Helldiver of Lykos Mug"><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true"><label class="sr-only" for="em-mug-helldiver">Your email</label><div class="row"><input id="em-mug-helldiver" type="email" name="email" placeholder="you@example.com" required><button type="submit">Tell me</button></div><p class="fine">One email when it&rsquo;s ready. Nothing else.</p></form></details></div></article>
+        <article class="card" id="tee-hi-neighbor" data-cat="apparel" data-type="physical" data-price="" data-text="hi, neighbor. handyman tee tee · soft cotton · white, natural, cream, ash, heather · s to 2xl hi, neighbor. on the chest. handyman services and the number on the back. apparel shipped to you "><div class="tile"><img class="on-white" src="shop-tee-hi-neighbor.jpg" width="1200" height="700" loading="lazy" alt="Front and back of a white tee: a small Hi, neighbor. on the left chest, and HANDYMAN SERVICES with a phone number on the back."></div><h2>Hi, Neighbor. Handyman Tee</h2><div class="kind">Tee · soft cotton · white, natural, cream, ash, heather · S to 2XL</div><div class="price-row"><span class="chip soon">Coming soon</span></div><p class="line">Hi, neighbor. on the chest. Handyman Services and the number on the back.</p><div class="actions"><details class="list"><summary class="btn">Tell me when it&rsquo;s ready</summary><form action="https://formsubmit.co/6b1855c751632b4d9182af3a363c2755" method="POST"><input type="hidden" name="_subject" value="Shop list: Hi, Neighbor. handyman tee"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_next" value="https://fourthkempson.com/shop.html#thanks"><input type="hidden" name="product" value="Hi, Neighbor. Handyman Tee"><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true"><label class="sr-only" for="em-tee-hi-neighbor">Your email</label><div class="row"><input id="em-tee-hi-neighbor" type="email" name="email" placeholder="you@example.com" required><button type="submit">Tell me</button></div><p class="fine">One email when it&rsquo;s ready. Nothing else.</p></form></details></div></article>
+        <p class="empty" id="empty" hidden>Nothing matches that yet. Try a different word, or <a href="shop.html" id="empty-reset">see everything</a>.</p>
+      </div>
+    </div>
   </div>
 </main>
 
@@ -166,5 +251,115 @@
   </div>
 </footer>
 
+<script>
+// Shop search, tabs and filters. Inlined into shop.html by build_site.py.
+// Every card carries data-cat, data-type, data-price ('' when no price is set) and
+// data-text (lower-case words to search). Nothing here talks to a server.
+(function () {
+  "use strict";
+
+  var cards = Array.prototype.slice.call(document.querySelectorAll(".card"));
+  var q = document.getElementById("q");
+  var clearBtn = document.querySelector(".search .clear");
+  var heading = document.getElementById("heading");
+  var count = document.getElementById("count");
+  var empty = document.getElementById("empty");
+  var tabs = Array.prototype.slice.call(document.querySelectorAll("nav.tabs a"));
+  var boxes = Array.prototype.slice.call(document.querySelectorAll(".filters input[type=checkbox]"));
+  var labels = {};
+  tabs.forEach(function (t) { labels[t.dataset.cat || ""] = t.textContent; });
+
+  var PRICE_TESTS = {
+    free: function (p) { return p === 0; },
+    under10: function (p) { return p > 0 && p < 10; },
+    "10to25": function (p) { return p >= 10 && p <= 25; },
+    over25: function (p) { return p > 25; }
+  };
+
+  function checked(group) {
+    return boxes.filter(function (b) { return b.name === group && b.checked; })
+                .map(function (b) { return b.value; });
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function matches(card, words, cats, types, prices) {
+    if (cats.length && cats.indexOf(card.dataset.cat) === -1) return false;
+    if (types.length && types.indexOf(card.dataset.type) === -1) return false;
+    if (prices.length) {
+      if (card.dataset.price === "") return false;
+      var p = parseFloat(card.dataset.price);
+      if (!prices.some(function (k) { return PRICE_TESTS[k](p); })) return false;
+    }
+    return words.every(function (w) { return card.dataset.text.indexOf(w) !== -1; });
+  }
+
+  function render() {
+    var text = q.value.trim().toLowerCase();
+    var words = text ? text.split(/\s+/) : [];
+    var cats = checked("cat");
+    var shown = 0;
+    cards.forEach(function (c) {
+      var ok = matches(c, words, cats, checked("type"), checked("price"));
+      c.hidden = !ok;
+      if (ok) shown += 1;
+    });
+    count.textContent = shown + (shown === 1 ? " product" : " products");
+    empty.hidden = shown !== 0;
+    clearBtn.hidden = !text;
+
+    var single = cats.length === 1 ? cats[0] : "";
+    tabs.forEach(function (t) { t.classList.toggle("on", (t.dataset.cat || "") === single); });
+    if (text) {
+      heading.innerHTML = "Showing results for <span class=\"mark\">‘" + escapeHtml(q.value.trim()) + "’</span>";
+    } else if (single) {
+      heading.innerHTML = "<span class=\"mark\">" + escapeHtml(labels[single] || single) + "</span>";
+    } else {
+      heading.innerHTML = "Everything in <span class=\"mark\">the shop</span>";
+    }
+  }
+
+  function applyHash() {
+    var cat = decodeURIComponent(location.hash.replace(/^#/, ""));
+    if (cat === "thanks" || cat === "top") return;
+    var known = boxes.some(function (b) { return b.name === "cat" && b.value === cat; });
+    boxes.forEach(function (b) { if (b.name === "cat") b.checked = known && b.value === cat; });
+    render();
+  }
+
+  tabs.forEach(function (t) {
+    t.addEventListener("click", function (e) {
+      e.preventDefault();
+      q.value = "";
+      var cat = t.dataset.cat || "";
+      history.replaceState(null, "", cat ? "#" + cat : location.pathname);
+      applyHash();
+    });
+  });
+  boxes.forEach(function (b) { b.addEventListener("change", render); });
+  q.addEventListener("input", render);
+  clearBtn.addEventListener("click", function () { q.value = ""; render(); q.focus(); });
+  function resetAll(e) {
+    if (e) e.preventDefault();
+    q.value = "";
+    boxes.forEach(function (b) { b.checked = false; });
+    history.replaceState(null, "", location.pathname);
+    render();
+  }
+  document.getElementById("reset").addEventListener("click", resetAll);
+  document.getElementById("empty-reset").addEventListener("click", resetAll);
+  window.addEventListener("hashchange", applyHash);
+
+  if (window.matchMedia("(max-width: 760px)").matches) {
+    document.getElementById("filters-box").open = false;
+  }
+  applyHash();
+})();
+
+</script>
 </body>
 </html>
